@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>DGMD E-28 Week 2 Assignment - Rock Paper Scissors</title>
+</head>
+
+<body>
+    <h1>Welcome to game - Rock Paper Scissors</h1>
+    <div>
+        <p>Select your choice:</p>
+        <input type="radio" name="choice" value="1" id="rock" /><label for="rock">Rock</label><br />
+        <input type="radio" name="choice" value="2" id="paper" /><label for="paper">Paper</label><br />
+        <input type="radio" name="choice" value="3" id="scissors" /><label for="scissors">Scissors</label><br />
+    </div>
+    <button id='playBtn'>Play!</button>
+    <div id='result'>
+        <p>Result: No result yet</p>
+    </div>
+
+    <script type="text/javascript">
+        let playBtn = document.getElementById('playBtn');
+        let resultDiv = document.getElementById('result');
+        let choiceRadios = document.getElementsByName('choice');
+
+        playBtn.addEventListener('click', play);
+
+        // The function when playBtn is clicked 
+        function play() {
+
+            let playerChoice = 0;
+            let computerChoice = getRandomInt(3);
+
+            // get player's selection
+            for (var i = 0, length = choiceRadios.length; i < length; i++) {
+                if (choiceRadios[i].checked) {
+                    playerChoice = choiceRadios[i].value;
+                    break;
+                }
+            }
+
+            // create result paragraphs 
+            var resultFirstParagraph = document.createElement('p');
+            var resultSecondParagraph = document.createElement('p');
+            resultDiv.innerHTML = '';
+            // compute and show the result
+            var resultTxt = document.createTextNode(getResult(playerChoice, computerChoice));
+            var computerChoiceTxt = document.createTextNode("Computer choice: " + getChoiceTxt(computerChoice));
+            resultFirstParagraph.appendChild(resultTxt);
+            resultSecondParagraph.appendChild(computerChoiceTxt);
+            resultDiv.appendChild(resultFirstParagraph);
+            resultDiv.appendChild(resultSecondParagraph);
+        }
+
+        // Function that computes win or loss
+        function getResult(player, computer) {
+            // player did not make a choice
+            if (player == 0) {
+                return "Please make a selection";
+            }
+            // player and computer choose the same
+            else if (player == computer) {
+                return "Result: It's a tie!";
+            }
+            // player uses rock
+            else if (player == 1) {
+                switch (computer) {
+                    // computer uses paper
+                    case 2: return "Result: Computer wins";
+                    // computer uses scissors
+                    case 3: return "Result: Player wins";
+                }
+            }
+            // player uses paper
+            else if (player == 2) {
+                switch (computer) {
+                    // computer uses rock
+                    case 1: return "Result: Player wins";
+                    // computer uses scissors
+                    case 3: return "Result: Computer wins";
+                }
+            }
+            // player uses scissors
+            else if (player == 3) {
+                switch (computer) {
+                    // computer uses rock
+                    case 1: return "Result: Computer wins";
+                    // computer uses paper
+                    case 2: return "Result: Player wins";
+                }
+            }
+        }
+
+        // Function that returns integer 1 to max
+        function getRandomInt(max) {
+            return Math.floor(Math.random() * Math.floor(max)) + 1;
+        }
+
+        // Function that converts number to choice
+        function getChoiceTxt(choice) {
+            switch (choice) {
+                case 1: return "Rock";
+                case 2: return "Paper";
+                case 3: return "Scissors";
+                default: return "";
+            }
+        }
+
+    </script>
+</body>
+
+</html>
