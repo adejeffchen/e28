@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>DGMD E-28 Week 2 Assignment - Rock Paper Scissors</title>
+</head>
+
+<body>
+    <h1>Welcome to game - Rock Paper Scissors</h1>
+    <div>
+        <p>Select your choice:</p>
+        <input type="radio" name="choice" value="1" id="rock" /><label for="rock">Rock</label><br />
+        <input type="radio" name="choice" value="2" id="paper" /><label for="paper">Paper</label><br />
+        <input type="radio" name="choice" value="3" id="scissors" /><label for="scissors">Scissors</label><br />
+    </div>
+    <button id='playBtn'>Play!</button>
+    <div id='result'>
+        <p>Result: No result yet</p>
+    </div>
+
+    <script type="text/javascript">
+        let playBtn = document.getElementById('playBtn');
+        let resultDiv = document.getElementById('result');
+        let choiceRadios = document.getElementsByName('choice');
+
+        playBtn.addEventListener('click', play);
+
+        // The function when playBtn is clicked 
+        function play() {
+            // create result paragraphs 
+            var resultFirstParagraph = document.createElement('p');
+            resultDiv.innerHTML = '';
+            let colors = ['red', 'orange', 'yellow'];
+            colors[3] = 'green';
+
+            var myCuteCat = {
+                name: "Angel",
+                age: 3,
+                isFeisty: true,
+                likes: ["rubber bands", "boxes", "4am petting sessions"],
+                fur: { colors: ["orange", "white"], pattern: "striped" },
+                meow: function () {
+                    document.write('MEOWWW');
+                }
+            };
+
+            let x = myCuteCat.meow();
+
+            console.log(x);
+
+        }
+
+    </script>
+</body>
+
+</html>

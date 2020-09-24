@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>E28 Project 1 - Jeff Chen</title>
+    <script src='https://cdn.jsdelivr.net/npm/vue/dist/vue.js' defer></script>
+    <script src='script.js' defer></script>
+    <style>
+        [v-cloak] {
+            display: none
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Welcome to game - Rock Paper Scissors</h1>
+    <div id='app' v-cloak>
+        <p>Select your choice:</p>
+        <input type="radio" name="choice" value="1" id="rock" v-model="selected" /><label for="rock">Rock</label><br />
+        <input type="radio" name="choice" value="2" id="paper" v-model="selected" /><label for="paper">Paper</label><br />
+        <input type="radio" name="choice" value="3" id="scissors" v-model="selected" /><label for="scissors">Scissors</label><br />
+        <button id='playBtn' @click='play'>Play!</button>
+
+        <div v-if='emptyResult == true'>
+            <p>No Result. Please start playing. </p>
+        </div>
+        <div v-else>
+            <p>Computer choice: {{ computerChoice }}</p>
+            <p>Score: </p>
+            <ul>
+                <li>Player: {{ playerScore }}</li>
+                <li>Computer: {{ computerScore }}</li>
+            </ul>
+            <p>Play History: </p>
+            <ul>
+                <li v-for='result in results'>Round {{ result.round }}; Result: {{ result.result }}</li>
+            </ul>
+            <button id='resetBtn' @click='reset'>Reset Game</button>
+        </div>
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>test</title>
+    <script src='https://cdn.jsdelivr.net/npm/vue/dist/vue.js' defer></script>
+    <script src='script.js' defer></script>
+    <style>
+        [v-cloak] {
+            display: none
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Shopping List</h1>
+    <div id='app' v-cloak>
+        <label>Qty: </label><input type="text" v-model.number='qty'>
+        <label>Item: </label><input type="text" v-model='item'><button v-on:click='addToList'>Add</button>
+        <div v-if='emptyList == true'>
+            <p>You have no items on your list. </p>
+            <ul>
+                <li v-for='theItem in items'>{{ theItem }}</li>
+            </ul>
+        </div>
+        <div v-if='emptyList != true'>
+            <p>Item count: {{ count }} </p>
+            <ul>
+                <li v-for='theItem in items'>{{ theItem }}</li>
+            </ul>
+        </div>
+        {{ items }}
+    </div>
+
+
+</body>
+
+</html>
