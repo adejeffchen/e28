@@ -2,6 +2,7 @@ var app = new Vue({
     el: '#app',
     data: {
         selected: 0,
+        feedbackStyleClass: '',
         result: '',
         results: [],
         emptyResult: true,
@@ -10,6 +11,7 @@ var app = new Vue({
         computerChoice: '',
         playerScore: 0,
         computerScore: 0,
+
     },
     methods: {
         play: function (event) {
@@ -27,6 +29,7 @@ var app = new Vue({
                 // player and computer choose the same
                 if (player == this.computer) {
                     this.result = "It's a tie!";
+                    this.feedbackStyleClass = 'tie';
                 }
                 // player uses rock
                 else if (player == 1) {
@@ -34,11 +37,13 @@ var app = new Vue({
                         // computer uses paper
                         case 2:
                             this.result = "Computer won";
+                            this.feedbackStyleClass = 'lose';
                             this.computerScore += 1;
                             break;
                         // computer uses scissors
                         case 3:
                             this.result = "Player won";
+                            this.feedbackStyleClass = 'win';
                             this.playerScore += 1;
                             break;
                     }
@@ -49,11 +54,13 @@ var app = new Vue({
                         // computer uses rock
                         case 1:
                             this.result = "Player won";
+                            this.feedbackStyleClass = 'win';
                             this.playerScore += 1;
                             break;
                         // computer uses scissors
                         case 3:
                             this.result = "Computer won";
+                            this.feedbackStyleClass = 'lose';
                             this.computerScore += 1;
                             break;
                     }
@@ -64,11 +71,13 @@ var app = new Vue({
                         // computer uses rock
                         case 1:
                             this.result = "Computer won";
+                            this.feedbackStyleClass = 'lose';
                             this.computerScore += 1;
                             break;
                         // computer uses paper
                         case 2:
                             this.result = "Player won";
+                            this.feedbackStyleClass = 'win';
                             this.playerScore += 1;
                             break;
                     }

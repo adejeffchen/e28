@@ -10,6 +10,22 @@
         [v-cloak] {
             display: none
         }
+
+        .resultSpacing {
+            padding: 0.2em;
+        }
+
+        .tie {
+            background-color: grey;
+        }
+
+        .win {
+            background-color: greenyellow;
+        }
+
+        .lose {
+            background-color: red;
+        }
     </style>
 </head>
 
@@ -27,6 +43,7 @@
         </div>
         <div v-else>
             <p>Computer choice: {{ computerChoice }}</p>
+            <span class='resultSpacing' v-bind:class='feedbackStyleClass' v-if='result'>{{ result }}</span>
             <p>Score: </p>
             <ul>
                 <li>Player: {{ playerScore }}</li>

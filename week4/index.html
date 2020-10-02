@@ -17,8 +17,7 @@
     <h1>Shopping List</h1>
     <div id='app' v-cloak>
         <label>Qty: </label><input type="text" v-model.number='qty'>
-        <label>Item: </label><input type="text" v-model='item' @keyup.enter='addToList'><button
-            v-on:click='addToList'>Add</button>
+        <label>Item: </label><input type="text" v-model='item' @keyup.enter='addToList'><button v-on:click='addToList'>Add</button>
         <div v-if='emptyList == true'>
             <p>You have no items on your list. </p>
         </div>
@@ -29,7 +28,16 @@
             </ul>
         </div>
         {{ items }}
+
+        <div v-if='true'>A</div>
+
+        <div v-if='false'>B</div>
+
+        <div v-show='true'>C</div>
+
+        <div v-show='false'>D</div>
     </div>
+
 
 
 </body>
