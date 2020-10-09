@@ -1,3 +1,9 @@
+// component that displays each round in play history
+Vue.component('history-round', {
+    template: '#history-round',
+    props: ['round', 'result'],
+});
+
 var app = new Vue({
     el: '#app',
     data: {

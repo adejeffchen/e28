@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>week5</title>
+    <script src='https://cdn.jsdelivr.net/npm/vue/dist/vue.js' defer></script>
+    <script src='script.js' defer></script>
+    <style>
+        [v-cloak] {
+            display: none
+        }
+
+        .hint {
+            font-style: italic;
+        }
+
+        .hide {
+            display: none;
+        }
+
+        .correct {
+            background-color: green;
+            padding: 0.5em;
+        }
+
+        .incorrect {
+            background-color: red;
+            padding: 0.5em;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Word Scramble</h1>
+    <div id='app' v-cloak>
+        <div v-if='!gameStart'>
+            <label>Enter your player name: </label><input type="text" v-model='playerName'>
+            <button id='playBtn' @click='play'>Let's play!</button>
+        </div>
+        <div v-else>
+            <p>{{ welcomeMsg }}</p>
+            <p>Your mystery word is: {{ scrambleWord }}</p>
+            <p>Hint: <span class="hint">{{ wordHint }}</span></p>
+            <p><label>Your guess: </label><input type="text" v-model.trim='guess'>
+                <button id='submitBtn' @click='submitGuess'>Submit guess</button></p>
+        </div>
+
+        <result-feedback v-bind:correct='correct' v-bind:show-feedback='showFeedback' v-on:play-again='play()'></result-feedback>
+    </div>
+
+    <!-- TEMPLATE FOR OUR COMPONENT -->
+    <script type='text/x-template' id='result-feedback'>
+    <div v-if="showFeedback">
+        <span :class="{ correct: correct}" v-if='correct'>You got it! <button id='playBtn' @click="$emit('play-again')">Play again</button></span>
+        <span :class="{ incorrect: !correct}" v-else>Sorry, this's not correct. Please try again.</span>
+    </div>
+    </script>
+
+</body>
+
+</html>

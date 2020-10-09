@@ -8,11 +8,11 @@
     <script src='script.js' defer></script>
     <style>
         [v-cloak] {
-            display: none
+            display: none;
         }
 
         .resultSpacing {
-            padding: 0.2em;
+            padding: 0.5em;
         }
 
         .tie {
@@ -26,36 +26,104 @@
         .lose {
             background-color: red;
         }
+
+        body {
+            margin-left: 10%;
+            margin-right: 10%;
+        }
+
+        #result-output {
+            border-style: solid;
+            border-width: thin;
+            margin-top: 1em;
+            padding: 0 1em 1em 1em;
+        }
+
+        #score {
+            border-style: solid;
+            border-width: thin;
+            float: left;
+            box-sizing: border-box;
+            width: 49%;
+            padding: 0 1em;
+            margin-top: 1em;
+        }
+
+        #history {
+            border-style: solid;
+            border-width: thin;
+            float: right;
+            box-sizing: border-box;
+            width: 50%;
+            padding: 0 1em 1em 1em;
+            margin-top: 1em;
+        }
+
+        /* HIDE RADIO */
+        [type=radio] {
+            position: absolute;
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        /* IMAGE STYLES */
+        [type=radio]+img {
+            cursor: pointer;
+            padding: 0.5em;
+        }
+
+        /* CHECKED STYLES */
+        [type=radio]:checked+img {
+            outline: 2px solid;
+        }
     </style>
 </head>
 
 <body>
-    <h1>Welcome to game - Rock Paper Scissors</h1>
+    <h1>Let's Play Rock Paper Scissors</h1>
     <div id='app' v-cloak>
-        <p>Select your choice:</p>
-        <input type="radio" name="choice" value="1" id="rock" v-model="selected" /><label for="rock">Rock</label><br />
-        <input type="radio" name="choice" value="2" id="paper" v-model="selected" /><label for="paper">Paper</label><br />
-        <input type="radio" name="choice" value="3" id="scissors" v-model="selected" /><label for="scissors">Scissors</label><br />
+        <h2>Select your choice:</h2>
+        <label for="rock"><input type="radio" name="choice" value="1" id="rock" v-model="selected" />
+            <img src="./images/rock.png">
+        </label>
+        <label for="paper"><input type="radio" name="choice" value="2" id="paper" v-model="selected" />
+            <img src="./images/paper.png">
+        </label>
+        <label for="scissors"><input type="radio" name="choice" value="3" id="scissors" v-model="selected" />
+            <img src="./images/scissors.png">
+        </label><br />
         <button id='playBtn' @click='play'>Play!</button>
 
         <div v-if='emptyResult == true'>
             <p>No Result. Please start playing. </p>
         </div>
         <div v-else>
-            <p>Computer choice: {{ computerChoice }}</p>
-            <span class='resultSpacing' v-bind:class='feedbackStyleClass' v-if='result'>{{ result }}</span>
-            <p>Score: </p>
-            <ul>
-                <li>Player: {{ playerScore }}</li>
-                <li>Computer: {{ computerScore }}</li>
-            </ul>
-            <p>Play History: </p>
-            <ul>
-                <li v-for='result in results'>Round {{ result.round }}; Result: {{ result.result }}</li>
-            </ul>
-            <button id='resetBtn' @click='reset'>Reset Game</button>
+            <div id="result-output">
+                <p>Computer choice: {{ computerChoice }}</p>
+                <span class='resultSpacing' v-bind:class='feedbackStyleClass' v-if='result'>{{ result }}</span>
+            </div>
+            <div id="score">
+                <h2>Score</h2>
+                <ul>
+                    <li>Player: {{ playerScore }}</li>
+                    <li>Computer: {{ computerScore }}</li>
+                </ul>
+            </div>
+            <div id="history">
+                <h2>Play History</h2>
+                <ul>
+                    <history-round v-for='result in results' v-bind:key='result.round' v-bind:round='result.round' v-bind:result='result.result'></history-round>
+                </ul>
+                <button id='resetBtn' @click='reset'>Reset Game</button>
+            </div>
         </div>
     </div>
+
+    <!-- TEMPLATE FOR COMPONENT history-round -->
+    <script type='text/x-template' id='history-round'>
+    <li>Round: {{ round }}; Result: {{ result }}</li>
+    </script>
 
 </body>
 
