@@ -83,26 +83,31 @@
 <body>
     <h1>Let's Play Rock Paper Scissors</h1>
     <div id='app' v-cloak>
+        <!-- Radio buttons to choose rock, paper, scissors -->
         <h2>Select your choice:</h2>
         <label for="rock"><input type="radio" name="choice" value="1" id="rock" v-model="selected" />
-            <img src="./images/rock.png">
+            <img src="./images/rock.png" alt="choose rock">
         </label>
         <label for="paper"><input type="radio" name="choice" value="2" id="paper" v-model="selected" />
-            <img src="./images/paper.png">
+            <img src="./images/paper.png" alt="choose paper">
         </label>
         <label for="scissors"><input type="radio" name="choice" value="3" id="scissors" v-model="selected" />
-            <img src="./images/scissors.png">
+            <img src="./images/scissors.png" alt="choose scissors">
         </label><br />
         <button id='playBtn' @click='play'>Play!</button>
 
         <div v-if='emptyResult == true'>
+            <!-- Show when there is no result -->
             <p>No Result. Please start playing. </p>
         </div>
         <div v-else>
+            <!-- Show when there result -->
             <div id="result-output">
+                <!-- Computer choice and current result section -->
                 <p>Computer choice: {{ computerChoice }}</p>
                 <span class='resultSpacing' v-bind:class='feedbackStyleClass' v-if='result'>{{ result }}</span>
             </div>
+            <!-- Running score section -->
             <div id="score">
                 <h2>Score</h2>
                 <ul>
@@ -110,11 +115,13 @@
                     <li>Computer: {{ computerScore }}</li>
                 </ul>
             </div>
+            <!-- Results of each round of the game played -->
             <div id="history">
                 <h2>Play History</h2>
                 <ul>
                     <history-round v-for='result in results' v-bind:key='result.round' v-bind:round='result.round' v-bind:result='result.result'></history-round>
                 </ul>
+                <!-- Reset game button -->
                 <button id='resetBtn' @click='reset'>Reset Game</button>
             </div>
         </div>

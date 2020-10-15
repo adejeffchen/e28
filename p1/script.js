@@ -17,12 +17,14 @@ var app = new Vue({
         computerChoice: '',
         playerScore: 0,
         computerScore: 0,
-
     },
     methods: {
         play: function (event) {
-
             let player = this.selected;
+            // computer chooses a random hand btw 1, 2, 3
+            // 1 = rock
+            // 2 = paper
+            // 3 = scissors 
             this.computer = getRandomInt(3);
             this.computerChoice = getChoiceTxt(this.computer);
 
@@ -97,6 +99,7 @@ var app = new Vue({
             }
         },
 
+        // reset the game
         reset: function (event) {
             this.results = [];
             this.round = 0;
