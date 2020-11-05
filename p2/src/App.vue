@@ -1,28 +1,46 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png" />
-    <HelloWorld msg="Welcome to P2" />
+    <img id="logo" alt="Jeff Recipe book logo" src="@/assets/images/logo.png" />
+    <h1>Welcome to Jeff Recipe Book</h1>
+    <!-- Navation area  -->
+    <nav>
+      <ul>
+        <li>
+          <router-link
+            v-for="link in links"
+            v-bind:key="link"
+            v-bind:to="paths[link]"
+            exact
+            >{{ link }}</router-link
+          >
+        </li>
+      </ul>
+    </nav>
+    <!-- Page component area  -->
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-import HelloWorld from "./components/HelloWorld.vue";
-
 export default {
   name: "App",
-  components: {
-    HelloWorld,
+  components: {},
+  data() {
+    return {
+      /* Store links in an array to maintain order */
+      links: ["Home", "Categories", "Favorites"],
+
+      /* Map links to the appropriate component */
+      paths: {
+        Home: "/",
+        Favorites: "/favorites",
+        Categories: "/categories",
+      },
+    };
   },
 };
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+<style lang='scss'>
+@import "@/assets/scss/recipes.scss";
 </style>

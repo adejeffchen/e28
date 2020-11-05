@@ -1,0 +1,61 @@
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  margin-top: 60px;
+}
+
+#logo {
+  width: 128px;
+}
+
+/* Naviation related styles  */
+nav ul {
+  list-style-type: none;
+
+  li {
+    display: inline-block;
+
+    a:link,
+    a:visited,
+    a:hover,
+    a:active {
+      display: inline-block;
+      padding: 5px;
+      margin: 5px;
+      cursor: pointer;
+      color: darkorange;
+    }
+
+    a:hover {
+      background-color: darkorange;
+      color: white;
+      text-decoration: none;
+    }
+
+    a.router-link-active:link,
+    a.router-link-active:visited,
+    a.router-link-active:hover,
+    a.router-link-active:active {
+      text-decoration: none;
+      color: black;
+      background-color: white;
+      cursor: inherit;
+    }
+  }
+}
+
+/* homepage recipe area styles  */
+.recipe {
+  float: left;
+  overflow: auto;
+  box-sizing: border-box;
+  width: 30%;
+  margin: 2em 0 0 1em;
+
+  .recipe-thumb {
+    max-width: 200px;
+  }
+}

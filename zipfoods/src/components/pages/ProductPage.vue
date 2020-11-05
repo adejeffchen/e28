@@ -12,15 +12,11 @@
 </template>
 
 <script>
-import { products } from "@/products.js";
-
 export default {
   name: "",
-  props: ["id"],
+  props: ["id", "products"],
   data() {
-    return {
-      products: products,
-    };
+    return {};
   },
   computed: {
     theProduct() {
