@@ -1,20 +1,29 @@
 <template>
   <div id="app">
-    <img id="logo" alt="Jeff Recipe book logo" src="@/assets/images/logo.png" />
-    <!-- Navation area  -->
-    <nav>
-      <ul>
-        <li>
-          <router-link
-            v-for="link in links"
-            v-bind:key="link"
-            v-bind:to="paths[link]"
-            exact
-            >{{ link }}</router-link
-          >
-        </li>
-      </ul>
-    </nav>
+    <div id="logo-area">
+      <router-link v-bind:to="paths['Home']" exact>
+        <img
+          id="logo"
+          alt="Jeff Recipe book logo"
+          src="@/assets/images/logo.png"
+        /><span id="logo-text">Jeff Recipe Book</span>
+      </router-link>
+      <!-- Navation area  -->
+      <nav>
+        <ul>
+          <li>
+            <router-link
+              v-for="link in links"
+              v-bind:key="link"
+              v-bind:to="paths[link]"
+              exact
+              >{{ link }}</router-link
+            >
+          </li>
+        </ul>
+      </nav>
+    </div>
+
     <!-- Page component area  -->
     <router-view v-bind:recipes="recipes"></router-view>
   </div>
@@ -30,13 +39,14 @@ export default {
     return {
       recipes: [],
       /* Store links in an array to maintain order */
-      links: ["Home", "Categories", "Favorites"],
+
+      links: ["Register", "Favorites"],
 
       /* Map links to the appropriate component */
       paths: {
         Home: "/",
+        Register: "/register",
         Favorites: "/favorites",
-        Categories: "/categories",
       },
     };
   },
