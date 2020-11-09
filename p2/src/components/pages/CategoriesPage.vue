@@ -5,15 +5,11 @@
 </template>
 
 <script>
-import { recipes } from "@/recipes.js";
-
 export default {
   name: "",
   components: {},
   data: function () {
-    return {
-      recipes: recipes,
-    };
+    return {};
   },
 };
 </script>

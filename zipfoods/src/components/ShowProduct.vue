@@ -1,29 +1,30 @@
 <template>
   <div class="product">
-    <router-link v-bind:key="product.id" v-bind:to="productsPath" exact>
-      <div class="product-name">{{ product.name }}</div>
+    <div class="product-name">{{ product.name }}</div>
+    <img class="product-thumb" v-bind:src="imageSource" />
 
-      <img
-        class="product-thumb"
-        v-bind:src="require('@/assets/images/products/' + product.id + '.jpg')"
-      />
-    </router-link>
-    <!-- <p class="product-description">{{ product.description }}</p>
-        <div class="product-price">${{ product.price }}</div> -->
+    <p class="description" v-if="includeDetails">
+      {{ product.description }}
+    </p>
+    <p class="price" v-if="includeDetails">${{ product.price }}</p>
   </div>
 </template>
 
 <script>
 export default {
   name: "show-product",
-  props: ["product"],
+  props: ["product", "includeDetails"],
   data: function () {
-    return {
-      productsPath: "/products/" + this.product.id,
-    };
+    return {};
+  },
+  computed: {
+    imageSource() {
+      try {
+        return require("@/assets/images/products/" + this.product.id + ".jpg");
+      } catch (e) {
+        return require("@/assets/images/products/image-not-available.jpg");
+      }
+    },
   },
 };
 </script>
-
-<style scoped>
-</style>

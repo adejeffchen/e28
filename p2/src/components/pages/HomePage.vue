@@ -1,5 +1,6 @@
 <template>
   <div>
+    <h1>Welcome to Jeff Recipe Book</h1>
     <p>
       Jeff Recipe Book is a special collection of easy to follow recipes that
       you want to make during Shelter In Place.
@@ -14,17 +15,15 @@
 
 <script>
 import ShowRecipe from "@/components/ShowRecipe.vue";
-import { recipes } from "@/recipes.js";
 
 export default {
   name: "",
+  props: ["recipes"],
   components: {
     "show-recipe": ShowRecipe,
   },
   data: function () {
-    return {
-      recipes: recipes,
-    };
+    return {};
   },
 };
 </script>

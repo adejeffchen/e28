@@ -72,5 +72,54 @@
                 "numeric"
             ]
         }
+    },
+    "recipe": {
+        "name": {
+            "type": "string",
+            "validators": [
+                "required",
+                "min:3",
+                "max:200"
+            ]
+        },
+        "description": {
+            "type": "text",
+            "validators": [
+                "required",
+                "min:10"
+            ]
+        },
+        "time": {
+            "type": "integer",
+            "validators": [
+                "required",
+                "numeric"
+            ]
+        },
+        "calories": {
+            "type": "integer",
+            "validators": [
+                "required",
+                "numeric"
+            ]
+        },
+        "ingredients": {
+            "type": "text",
+            "validators": [
+                "required",
+                "min:50"
+            ]
+        },
+        "directions": {
+            "type": "text",
+            "validators": [
+                "required",
+                "min:50"
+            ]
+        },
+        "categories": {
+            "type": "string",
+            "validators": []
+        }
     }
 }

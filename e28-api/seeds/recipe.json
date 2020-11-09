@@ -1,0 +1,22 @@
+{
+    "seeds": [
+        {
+            "name": "Buffalo Chicken Sliders",
+            "description": "For this slider, we tuck the usual Buffalo wing accompaniments--carrots and celery--inside the patty. This gives you all the flavors of a wing plate while also helping to keep the lean breast meat moist. When shredding the celery (so that it incorporates nicely), you will have to stop occasionally to pull and discard the strings. Be sure to search for celery bunches with nice, fresh leaves still attached.",
+            "time": 26,
+            "calories": 392,
+            "ingredients": "2 tablespoons canola mayonnaise | 1 tablespoon 2% reduced-fat milk | 1 ounce blue cheese, crumbled | 1 pound ground chicken breast | ⅓ cup panko (Japanese breadcrumbs) | ⅓ cup shredded carrot | ⅓ cup shredded celery | ½ teaspoon paprika | 1 large egg, lightly beaten | 1 garlic clove, grated | Cooking spray | 3 tablespoons hot sauce | 1 tablespoon butter, melted | 8 whole-grain slider buns, split and toasted",
+            "directions": "Combine first 3 ingredients in a small bowl; set aside. | Place chicken in a medium bowl; add panko, carrot, celery, paprika, egg, and garlic. Mix just until combined. Divide into 8 portions; shape each into a 3-inch patty. | Heat a grill pan over medium-high heat. Lightly coat pan with cooking spray. Add patties to pan; cook 3 minutes on each side or until done. Combine hot sauce and butter in a medium bowl; add patties to bowl, turning to coat. Layer bottom half of each bun with 1 patty, about 1 teaspoon blue cheese mixture, 2 celery leaves, and top half of bun.",
+            "categories": "chicken"
+        },
+        {
+            "name": "Cheesy Skillet Gnocchi",
+            "description": "This cheesy gnocchi is ideal for a cold weather in front of your favorite TV show. It has all the proteins you need on top of a great flavor of italian sausage and tomatoes.",
+            "time": 17,
+            "calories": 301,
+            "ingredients": "2 teaspoons extra-virgin olive oil | 1 (16-ounce) package prepared whole-wheat gnocchi | 4 ounces mild Italian sausage, casings removed | 1 ½ cups chopped tomato | 2 garlic cloves, sliced | ¼ cup unsalted chicken stock (such as Swanson) | 2 ounces part-skim mozzarella cheese, shredded (about 1/2 cup) | ¼ cup chopped fresh basil",
+            "directions": "Preheat broiler to high. | Heat a large ovenproof skillet over medium heat. Add oil; swirl. Add gnocchi; cook 7 minutes or until lightly browned, stirring occasionally. Place gnocchi in a large bowl. Add sausage to pan; cook 6 minutes or until browned, stirring to crumble. Add sausage to gnocchi. Add tomato and garlic to pan; cook 2 minutes, stirring occasionally. Add gnocchi mixture and stock to pan; sprinkle with cheese. Place pan in oven; broil 2 minutes or until cheese is melted and lightly browned. Sprinkle with basil.",
+            "categories": "pasta | sausage"
+        }
+    ]
+}

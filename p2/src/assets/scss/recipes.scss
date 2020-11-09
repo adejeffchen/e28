@@ -48,7 +48,7 @@ nav ul {
 }
 
 /* homepage recipe area styles  */
-.recipe {
+.recipe-list {
   float: left;
   overflow: auto;
   box-sizing: border-box;
@@ -57,5 +57,28 @@ nav ul {
 
   .recipe-thumb {
     max-width: 200px;
+  }
+}
+
+.recipe-full-thumb {
+  float: left;
+  overflow: auto;
+  box-sizing: border-box;
+  width: 50%;
+  padding: 0 0 0 1em;
+}
+.recipe-detail {
+  text-align: left;
+  float: left;
+  overflow: auto;
+  box-sizing: border-box;
+  width: 50%;
+  padding: 0 7em 0 1em;
+  .ingredients {
+  }
+  .directions {
+    li {
+      margin: 1em 0;
+    }
   }
 }

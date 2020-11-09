@@ -7,6 +7,7 @@ import ProductsPage from '@/components/pages/ProductsPage.vue';
 import CategoriesPage from '@/components/pages/CategoriesPage.vue';
 import ProductPage from '@/components/pages/ProductPage.vue';
 import ProductCreatePage from '@/components/pages/ProductCreatePage.vue';
+import EditProductPage from '@/components/pages/EditProductPage.vue';
 
 Vue.config.productionTip = false
 
@@ -19,7 +20,8 @@ const router = new VueRouter({
         { path: '/products', component: ProductsPage },
         { path: '/categories', component: CategoriesPage },
         { path: '/products/new', component: ProductCreatePage },
-        { path: '/products/:id', component: ProductPage, props: true }
+        { path: '/products/:id', component: ProductPage, props: true },
+        { path: '/products/:id/edit', component: EditProductPage, props: true },
     ],
 })
 

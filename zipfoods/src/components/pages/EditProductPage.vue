@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h2>Add a Product</h2>
+    <h2>Edit Product</h2>
 
     <div id="inputs">
       <label for="name">Name</label>
@@ -27,7 +27,7 @@
       <textarea v-model="product.description" id="description"></textarea>
     </div>
 
-    <button @click="addProduct">Add Product</button>
+    <button @click="editProduct">Save Change</button>
 
     <div v-if="errors" class="error">
       <li v-for="value in errors" v-bind:key="value">
@@ -35,7 +35,7 @@
       </li>
     </div>
 
-    <div v-if="showConfirmationMessage">Item added succesfully.</div>
+    <div v-if="showConfirmationMessage">Item saved succesfully.</div>
   </div>
 </template>
 
@@ -43,6 +43,7 @@
 import { axios } from "@/app.js";
 
 export default {
+  props: ["id"],
   data() {
     return {
       errors: null,
@@ -60,18 +61,23 @@ export default {
     };
   },
   methods: {
-    addProduct() {
-      axios.post("/product", this.product).then((response) => {
+    editProduct() {
+      axios.put("/product/" + this.id, this.product).then((response) => {
         if (response.data.errors) {
           this.errors = response.data.errors;
         } else {
           // Code here on what to do upon succesfully adding a product
           this.errors = null;
           this.showConfirmationMessage = true;
-          this.product.name = "";
+          //this.product.name = "";
         }
       });
     },
+  },
+  mounted: function () {
+    axios.get("/product/" + this.id).then((response) => {
+      this.product = response.data.product;
+    });
   },
 };
 </script>

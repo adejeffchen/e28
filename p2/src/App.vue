@@ -1,7 +1,6 @@
 <template>
   <div id="app">
     <img id="logo" alt="Jeff Recipe book logo" src="@/assets/images/logo.png" />
-    <h1>Welcome to Jeff Recipe Book</h1>
     <!-- Navation area  -->
     <nav>
       <ul>
@@ -17,16 +16,19 @@
       </ul>
     </nav>
     <!-- Page component area  -->
-    <router-view></router-view>
+    <router-view v-bind:recipes="recipes"></router-view>
   </div>
 </template>
 
 <script>
+import { axios } from "@/app.js";
+
 export default {
   name: "App",
   components: {},
   data() {
     return {
+      recipes: [],
       /* Store links in an array to maintain order */
       links: ["Home", "Categories", "Favorites"],
 
@@ -37,6 +39,12 @@ export default {
         Categories: "/categories",
       },
     };
+  },
+  mounted() {
+    axios.get("recipe").then((response) => {
+      //console.log(response);
+      this.recipes = response.data.recipe;
+    });
   },
 };
 </script>
