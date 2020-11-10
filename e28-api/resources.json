@@ -121,5 +121,30 @@
             "type": "string",
             "validators": []
         }
+    },
+    "review": {
+        "rating": {
+            "type": "integer",
+            "validators": [
+                "required",
+                "min:1",
+                "max:5",
+                "numeric"
+            ]
+        },
+        "review_detail": {
+            "type": "text",
+            "validators": [
+                "required",
+                "min:4"
+            ]
+        },
+        "recipe_id": {
+            "type": "integer",
+            "validators": [
+                "required",
+                "numeric"
+            ]
+        }
     }
 }

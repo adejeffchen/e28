@@ -84,11 +84,12 @@ nav ul {
 }
 .recipe-detail {
   text-align: left;
-  float: left;
+  float: right;
   overflow: auto;
   box-sizing: border-box;
   width: 50%;
   padding: 0 7em 0 1em;
+  margin-bottom: 2em;
   .ingredients {
   }
   .directions {

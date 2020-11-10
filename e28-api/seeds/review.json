@@ -1,0 +1,19 @@
+{
+    "seeds": [
+        {
+            "rating": 1,
+            "review_detail": "This is not very good.",
+            "recipe_id": 1
+        },
+        {
+            "rating": 5,
+            "review_detail": "This tastes so good and it's easy to make!",
+            "recipe_id": 1
+        },
+        {
+            "rating": 2,
+            "review_detail": "The steps are too complicated",
+            "recipe_id": 3
+        }
+    ]
+}

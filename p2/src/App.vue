@@ -38,9 +38,8 @@ export default {
   data() {
     return {
       recipes: [],
-      /* Store links in an array to maintain order */
-
-      links: ["Register", "Favorites"],
+      /* links in the navigation */
+      links: ["Home", "Register", "Favorites"],
 
       /* Map links to the appropriate component */
       paths: {
@@ -51,8 +50,8 @@ export default {
     };
   },
   mounted() {
+    // get recipes data from server
     axios.get("recipe").then((response) => {
-      //console.log(response);
       this.recipes = response.data.recipe;
     });
   },
