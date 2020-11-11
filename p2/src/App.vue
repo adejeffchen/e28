@@ -39,13 +39,14 @@ export default {
     return {
       recipes: [],
       /* links in the navigation */
-      links: ["Home", "Register", "Favorites"],
+      links: ["Home", "Register", "Sign In", "Favorites"],
 
       /* Map links to the appropriate component */
       paths: {
         Home: "/",
         Register: "/register",
         Favorites: "/favorites",
+        "Sign In": "/signin",
       },
     };
   },

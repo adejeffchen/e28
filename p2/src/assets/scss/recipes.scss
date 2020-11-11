@@ -98,3 +98,54 @@ nav ul {
     }
   }
 }
+
+.reviews {
+  ul {
+    border: 1px solid gray;
+    border-radius: 5px;
+    padding: 2em 1em;
+  }
+  li {
+    list-style-type: none;
+  }
+}
+
+#add-review-input {
+  float: left;
+  overflow: auto;
+  box-sizing: border-box;
+  width: 60%;
+  text-align: left;
+  margin-bottom: 1em;
+  h2 {
+    font-size: 1.3em;
+  }
+  .star {
+    width: 125px;
+  }
+  #review-detail {
+    display: block;
+    width: 600px;
+    height: 200px;
+    margin-bottom: 1em;
+  }
+  #review-detail-title {
+    display: block;
+    font-weight: bold;
+    font-size: 1.3em;
+
+    margin-block-start: 0.83em;
+    margin-block-end: 0.83em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+  }
+}
+
+.error {
+  color: red;
+  list-style-type: none;
+}
+
+.success {
+  color: green;
+}
