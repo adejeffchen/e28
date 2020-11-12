@@ -19,9 +19,6 @@ export default {
   components: {
     "show-recipe": ShowRecipe,
   },
-  data() {
-    return {};
-  },
   computed: {
     recipe() {
       return this.recipes.filter((recipe) => {

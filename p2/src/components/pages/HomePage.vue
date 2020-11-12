@@ -22,9 +22,6 @@ export default {
   components: {
     "show-recipe": ShowRecipe,
   },
-  data: function () {
-    return {};
-  },
 };
 </script>
 

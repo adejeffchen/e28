@@ -6,7 +6,7 @@
           id="logo"
           alt="Jeff Recipe book logo"
           src="@/assets/images/logo.png"
-        /><span id="logo-text">Jeff Recipe Book</span>
+        />
       </router-link>
       <!-- Navation area  -->
       <nav>
@@ -34,14 +34,14 @@ import { axios } from "@/app.js";
 
 export default {
   name: "App",
-  components: {},
   data() {
     return {
+      // all recipes
       recipes: [],
-      /* links in the navigation */
+      // links in the navigation
       links: ["Home", "Register", "Sign In", "Favorites"],
 
-      /* Map links to the appropriate component */
+      // Map links to the appropriate component
       paths: {
         Home: "/",
         Register: "/register",

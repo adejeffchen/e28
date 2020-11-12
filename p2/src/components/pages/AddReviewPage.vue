@@ -2,9 +2,13 @@
   <div id="add-review">
     <h1>Submit Your Review</h1>
     <div v-if="recipe">
+      <!-- show the recipe thumbnail and name -->
       <show-recipe :recipe="recipe"></show-recipe>
+
+      <!-- review input area -->
       <div id="add-review-input">
         <h2>Rating</h2>
+        <!-- radio button of 5 different stars choices -->
         <label for="5star"
           ><input
             type="radio"
@@ -71,6 +75,8 @@
           />
           <img class="star" src="@/assets/images/1star.svg" alt="1star" />
         </label>
+
+        <!-- text input area -->
         <label for="review-detail" id="review-detail-title"
           >Review Detail</label
         >
@@ -81,8 +87,9 @@
         ></textarea>
         <button id="submitReviewBtn" @click="addReview">Submit Review</button>
 
+        <!-- review submission success message -->
         <div v-if="showConfirmationMessage" class="success">
-          Your review has been added!
+          Thank you! Your review has been added.
         </div>
 
         <!-- If API returns error  -->
@@ -94,6 +101,7 @@
       </div>
     </div>
 
+    <!-- if recipe id in URL is not valid -->
     <div v-if="recipeNotFound">
       <p>Recipe {{ id }} not found.</p>
     </div>
@@ -123,6 +131,7 @@ export default {
   },
   methods: {
     addReview() {
+      // add review to server
       axios.post("/review", this.review).then((response) => {
         if (response.data.errors) {
           this.errors = response.data.errors;

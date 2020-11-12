@@ -7,18 +7,14 @@
   margin-top: 60px;
 }
 
+/* Logo related styles  */
 #logo-area {
   width: 100%;
   float: left;
   #logo {
-    width: 128px;
+    height: 128px;
     float: left;
     margin-left: 10em;
-  }
-  #logo-text {
-    font-size: 2em;
-    float: left;
-    padding-top: 2em;
   }
 }
 /* Naviation related styles  */
@@ -91,11 +87,41 @@ nav ul {
   padding: 0 7em 0 1em;
   margin-bottom: 2em;
   .ingredients {
+    li {
+      margin: 0.2em 0;
+    }
   }
   .directions {
     li {
       margin: 1em 0;
     }
+  }
+
+  a:link,
+  a:visited,
+  a:hover,
+  a:active {
+    display: inline-block;
+    padding: 5px;
+    margin: 5px;
+    cursor: pointer;
+    color: darkorange;
+  }
+
+  a:hover {
+    background-color: darkorange;
+    color: white;
+    text-decoration: none;
+  }
+
+  a.router-link-active:link,
+  a.router-link-active:visited,
+  a.router-link-active:hover,
+  a.router-link-active:active {
+    text-decoration: none;
+    color: black;
+    background-color: white;
+    cursor: inherit;
   }
 }
 
@@ -120,9 +146,6 @@ nav ul {
   h2 {
     font-size: 1.3em;
   }
-  .star {
-    width: 125px;
-  }
   #review-detail {
     display: block;
     width: 600px;
@@ -133,12 +156,13 @@ nav ul {
     display: block;
     font-weight: bold;
     font-size: 1.3em;
-
-    margin-block-start: 0.83em;
-    margin-block-end: 0.83em;
-    margin-inline-start: 0px;
-    margin-inline-end: 0px;
+    margin-block-start: 0.8em;
+    margin-block-end: 0.8em;
   }
+}
+
+.star {
+  width: 125px;
 }
 
 .error {
