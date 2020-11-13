@@ -1,19 +1,23 @@
 # Project 2
 + By: Jeff Chen
-+ Production URL: <http://e28p2.yourdomain.com>
++ Production URL: <http://e28p2.adejeffchen.me>
 
 ## Pages summary
-*List the "pages" of your application*
++ Home page: shows a list of recipe thumbnails and names 
++ Recipe Page: shows the detail information of a recipe, including its reviews 
++ Add Review Page: the page that adds a review to a recipe 
 
 ## SFC summary
-*List the SFCs of your application*
++ ShowRecipe component: It's a SFC that shows a single recipe information. It can show just the recipe's thumbnail+name or the full recipe detail+reviews. 
   
 ## Server interaction
-*List the features in your application that are persisting and retrieving data from the server*
++ The website retrieves the list of recipes from the server 
++ The website retrieves the list of reviews from the server 
++ The website writes and persists new review for a recipe to the server 
 
 ## Outside resources
 + icons are from <https://www.iconfinder.com/icons/3558110/food_bread_hamburger_fast_patty_icon>
 + recipes info and photos from <https://www.cookinglight.com/eating-smart/best-quarantine-meals>
 
 ## Notes for instructor
-*Any notes for me to refer to while grading; if none, omit this section*
++ Register, Sign In, Favorites link to "This page is coming soon!". Those are to be implemented in project 3. 
