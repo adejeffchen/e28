@@ -142,6 +142,7 @@ export default {
           this.showConfirmationMessage = true;
           this.review.review_detail = "";
           this.review.rating = 5;
+          this.$emit("update-reviews");
         }
       });
     },

@@ -25,7 +25,11 @@
     </div>
 
     <!-- Page component area  -->
-    <router-view v-bind:recipes="recipes"></router-view>
+    <router-view
+      :recipes="recipes"
+      :reviews="reviews"
+      @update-reviews="updateReviews()"
+    ></router-view>
   </div>
 </template>
 
@@ -38,6 +42,8 @@ export default {
     return {
       // all recipes
       recipes: [],
+      // all reviews
+      reviews: [],
       // links in the navigation
       links: ["Home", "Register", "Sign In", "Favorites"],
 
@@ -50,10 +56,21 @@ export default {
       },
     };
   },
+  methods: {
+    updateReviews() {
+      axios.get("review").then((response) => {
+        this.reviews = response.data.review;
+      });
+    },
+  },
   mounted() {
     // get recipes data from server
     axios.get("recipe").then((response) => {
       this.recipes = response.data.recipe;
+    });
+    // get review data from server
+    axios.get("review").then((response) => {
+      this.reviews = response.data.review;
     });
   },
 };

@@ -1,7 +1,11 @@
 <template>
   <div id="recipe-page">
     <div v-if="recipe">
-      <show-recipe :recipe="recipe" :showDetail="true"></show-recipe>
+      <show-recipe
+        :recipe="recipe"
+        :showDetail="true"
+        :reviews="reviews"
+      ></show-recipe>
     </div>
 
     <div v-if="recipeNotFound">
@@ -15,7 +19,7 @@ import ShowRecipe from "@/components/ShowRecipe.vue";
 
 export default {
   name: "",
-  props: ["id", "recipes"],
+  props: ["id", "recipes", "reviews"],
   components: {
     "show-recipe": ShowRecipe,
   },

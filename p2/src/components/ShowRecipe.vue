@@ -83,14 +83,11 @@
 </template>
 
 <script>
-import { axios } from "@/app.js";
-
 export default {
   name: "show-recipe",
-  props: ["recipe", "showDetail"],
+  props: ["recipe", "showDetail", "reviews"],
   data: function () {
     return {
-      reviews: [],
       recipesPath: "/recipes/" + this.recipe.id,
       addReviewPath: "/recipes/" + this.recipe.id + "/add-review",
     };
@@ -113,12 +110,6 @@ export default {
         return theReviews;
       }
     },
-  },
-  mounted() {
-    // get recipes reviews from server
-    axios.get("review").then((response) => {
-      this.reviews = response.data.review;
-    });
   },
 };
 </script>
