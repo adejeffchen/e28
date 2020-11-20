@@ -1,0 +1,175 @@
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  margin-top: 60px;
+}
+
+/* Logo related styles  */
+#logo-area {
+  width: 100%;
+  float: left;
+  #logo {
+    height: 128px;
+    float: left;
+    margin-left: 10em;
+  }
+}
+/* Naviation related styles  */
+nav {
+  float: right;
+  margin-right: 10em;
+  padding-top: 3em;
+}
+nav ul {
+  list-style-type: none;
+
+  li {
+    display: inline-block;
+
+    a:link,
+    a:visited,
+    a:hover,
+    a:active {
+      display: inline-block;
+      padding: 5px;
+      margin: 5px;
+      cursor: pointer;
+      color: darkorange;
+    }
+
+    a:hover {
+      background-color: darkorange;
+      color: white;
+      text-decoration: none;
+    }
+
+    a.router-link-active:link,
+    a.router-link-active:visited,
+    a.router-link-active:hover,
+    a.router-link-active:active {
+      text-decoration: none;
+      color: black;
+      background-color: white;
+      cursor: inherit;
+    }
+  }
+}
+
+/* homepage recipe area styles  */
+.recipe-list {
+  float: left;
+  overflow: auto;
+  box-sizing: border-box;
+  width: 30%;
+  margin: 2em 0 0 1em;
+
+  .recipe-thumb {
+    max-width: 200px;
+  }
+}
+
+.recipe-full-thumb {
+  float: left;
+  overflow: auto;
+  box-sizing: border-box;
+  width: 50%;
+  padding: 0 0 0 6em;
+}
+.recipe-detail {
+  text-align: left;
+  float: right;
+  overflow: auto;
+  box-sizing: border-box;
+  width: 50%;
+  padding: 0 7em 0 1em;
+  margin-bottom: 2em;
+  .ingredients {
+    li {
+      margin: 0.2em 0;
+    }
+  }
+  .directions {
+    li {
+      margin: 1em 0;
+    }
+  }
+
+  a:link,
+  a:visited,
+  a:hover,
+  a:active {
+    display: inline-block;
+    padding: 5px;
+    margin: 5px;
+    cursor: pointer;
+    color: darkorange;
+  }
+
+  a:hover {
+    background-color: darkorange;
+    color: white;
+    text-decoration: none;
+  }
+
+  a.router-link-active:link,
+  a.router-link-active:visited,
+  a.router-link-active:hover,
+  a.router-link-active:active {
+    text-decoration: none;
+    color: black;
+    background-color: white;
+    cursor: inherit;
+  }
+}
+
+.reviews {
+  ul {
+    border: 1px solid gray;
+    border-radius: 5px;
+    padding: 2em 1em;
+  }
+  li {
+    list-style-type: none;
+  }
+}
+
+#add-review-input {
+  float: left;
+  overflow: auto;
+  box-sizing: border-box;
+  width: 60%;
+  text-align: left;
+  margin-bottom: 1em;
+  h2 {
+    font-size: 1.3em;
+  }
+  #review-detail {
+    display: block;
+    width: 600px;
+    height: 200px;
+    margin-bottom: 1em;
+  }
+  #review-detail-title {
+    display: block;
+    font-weight: bold;
+    font-size: 1.3em;
+    margin-block-start: 0.8em;
+    margin-block-end: 0.8em;
+  }
+}
+
+.star {
+  width: 125px;
+}
+
+.error {
+  color: red;
+  list-style-type: none;
+}
+
+.success {
+  color: green;
+}

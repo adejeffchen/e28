@@ -37,6 +37,9 @@ var app = new Vue({
             this.showResult = false;
             this.previousWord = this.wordAnswer;
             this.showFeedback = false;
+
+            console.log(localStorage.getItem('hello'));
+            localStorage.setItem('hello', 'world');
         },
         submitGuess() {
             if (this.guess == this.wordAnswer) {
