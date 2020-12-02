@@ -1,11 +1,7 @@
 <template>
   <div id="recipe-page">
     <div v-if="recipe">
-      <show-recipe
-        :recipe="recipe"
-        :showDetail="true"
-        :reviews="reviews"
-      ></show-recipe>
+      <show-recipe :recipe="recipe" :showDetail="true"></show-recipe>
     </div>
 
     <div v-if="recipeNotFound">
@@ -19,15 +15,14 @@ import ShowRecipe from "@/components/ShowRecipe.vue";
 
 export default {
   name: "",
-  props: ["id", "recipes", "reviews"],
+  props: ["id"],
   components: {
     "show-recipe": ShowRecipe,
   },
   computed: {
+    // one recipe
     recipe() {
-      return this.recipes.filter((recipe) => {
-        return recipe.id == this.id;
-      }, this.id)[0];
+      return this.$store.getters.getRecipeById(this.id);
     },
     recipeNotFound() {
       return this.recipe == null;

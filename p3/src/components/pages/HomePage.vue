@@ -18,9 +18,14 @@ import ShowRecipe from "@/components/ShowRecipe.vue";
 
 export default {
   name: "",
-  props: ["recipes"],
   components: {
     "show-recipe": ShowRecipe,
+  },
+  computed: {
+    // all recipes
+    recipes() {
+      return this.$store.state.recipes;
+    },
   },
 };
 </script>

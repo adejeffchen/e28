@@ -25,53 +25,32 @@
     </div>
 
     <!-- Page component area  -->
-    <router-view
-      :recipes="recipes"
-      :reviews="reviews"
-      @update-reviews="updateReviews()"
-    ></router-view>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-import { axios } from "@/app.js";
-
 export default {
   name: "App",
   data() {
     return {
-      // all recipes
-      recipes: [],
-      // all reviews
-      reviews: [],
       // links in the navigation
-      links: ["Home", "Register", "Sign In", "Favorites"],
+      links: ["Home", "Register", "Sign In", "My Favorites"],
 
       // Map links to the appropriate component
       paths: {
         Home: "/",
         Register: "/register",
-        Favorites: "/favorites",
+        "My Favorites": "/myfavorites",
         "Sign In": "/signin",
       },
     };
   },
-  methods: {
-    updateReviews() {
-      axios.get("review").then((response) => {
-        this.reviews = response.data.review;
-      });
-    },
-  },
   mounted() {
-    // get recipes data from server
-    axios.get("recipe").then((response) => {
-      this.recipes = response.data.recipe;
-    });
-    // get review data from server
-    axios.get("review").then((response) => {
-      this.reviews = response.data.review;
-    });
+    // get recipes and reviews data from server
+    this.$store.dispatch("fetchRecipes");
+    this.$store.dispatch("fetchReviews");
+    this.$store.dispatch("authUser");
   },
 };
 </script>

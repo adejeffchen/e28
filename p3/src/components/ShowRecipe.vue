@@ -85,7 +85,7 @@
 <script>
 export default {
   name: "show-recipe",
-  props: ["recipe", "showDetail", "reviews"],
+  props: ["showDetail", "recipe"],
   data: function () {
     return {
       recipesPath: "/recipes/" + this.recipe.id,
@@ -101,9 +101,7 @@ export default {
     },
     reviewsForRecipe() {
       // filter the reviews for this recipe ID
-      const theReviews = this.reviews.filter((reviews) => {
-        return reviews.recipe_id == this.recipe.id;
-      }, this.recipe.id);
+      const theReviews = this.$store.getters.getReviewsById(this.recipe.id);
       if (theReviews.length < 1) {
         return null;
       } else {

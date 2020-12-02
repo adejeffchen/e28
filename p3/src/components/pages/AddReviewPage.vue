@@ -114,7 +114,7 @@ import { axios } from "@/app.js";
 
 export default {
   name: "",
-  props: ["id", "recipes"],
+  props: ["id"],
   components: {
     "show-recipe": ShowRecipe,
   },
@@ -142,16 +142,16 @@ export default {
           this.showConfirmationMessage = true;
           this.review.review_detail = "";
           this.review.rating = 5;
-          this.$emit("update-reviews");
+          // update the store's reviews
+          this.$store.dispatch("fetchReviews");
         }
       });
     },
   },
   computed: {
+    // one recipe
     recipe() {
-      return this.recipes.filter((recipe) => {
-        return recipe.id == this.id;
-      }, this.id)[0];
+      return this.$store.getters.getRecipeById(this.id);
     },
     recipeNotFound() {
       return this.recipe == null;
