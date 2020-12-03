@@ -35,14 +35,13 @@ export default {
   data() {
     return {
       // links in the navigation
-      links: ["Home", "Register", "Sign In", "My Favorites"],
+      links: ["Home", "My Favorites", "Manage Reviews"],
 
       // Map links to the appropriate component
       paths: {
         Home: "/",
-        Register: "/register",
         "My Favorites": "/myfavorites",
-        "Sign In": "/signin",
+        "Manage Reviews": "/managereviews",
       },
     };
   },

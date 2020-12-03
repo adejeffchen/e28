@@ -2,6 +2,7 @@
   <div>
     <div v-if="user">
       <h1>Hi {{ user.name }}, here are your favorite recipes!</h1>
+      <button @click="signoutUser">Sign Out</button>
       <show-recipe
         v-for="recipe in favorites"
         :key="recipe.id"
@@ -58,20 +59,27 @@ export default {
         }
       });
     },
+    signoutUser() {
+      console.log("Signing out");
+      axios.post("logout").then((response) => {
+        console.log(response.data);
+        if (response.data.success) {
+          this.$store.commit("setUser", null);
+        } else {
+          this.errors = response.data.errors;
+        }
+      });
+    },
     loadFavorites() {
       if (this.user) {
         this.favorites = [];
-        // query the favorite with the user ID
-        axios
-          .get("favorite/query", {
-            params: { user_id: this.user.id },
-          })
-          .then((response) => {
-            // Iterate through the favorites (response.data.results), loading the recipe information for each favorite
-            this.favorites = response.data.results.map((favorite) => {
-              return this.$store.getters.getRecipeById(favorite.product_id);
-            });
+        // get the favorites for this logged in user
+        axios.get("favorite").then((response) => {
+          // Iterate through the favorites, loading the recipe information for each favorite
+          this.favorites = response.data.favorite.map((favorite) => {
+            return this.$store.getters.getRecipeById(favorite.product_id);
           });
+        });
       }
     },
   },
