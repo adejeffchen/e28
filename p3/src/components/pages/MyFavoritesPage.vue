@@ -1,8 +1,11 @@
 <template>
   <div>
     <div v-if="user">
-      <h1>Hi {{ user.name }}, here are your favorite recipes!</h1>
-      <button @click="signoutUser">Sign Out</button>
+      <h1 v-if="favorites">
+        Hi {{ user.name }}, you don't have any favorite recipe yet!
+      </h1>
+      <h1 v-else>Hi {{ user.name }}, here are your favorite recipes!</h1>
+      <button @click="signoutUser" data-test="signout-button">Sign Out</button>
       <show-recipe
         v-for="recipe in favorites"
         :key="recipe.id"
@@ -11,11 +14,14 @@
     </div>
     <!-- If user credential is missing -->
     <div v-else>
-      <h1>Please login first.</h1>
-      <label for="email" id="email-title">Email: </label>
+      <!-- Login form -->
+      <h1>Please login first</h1>
+      <label for="email" id="email-title" class="form-label">Email: </label>
       <input type="text" id="email" name="email" v-model="userData.email" />
       <br />
-      <label for="password" id="password-title">Password: </label>
+      <label for="password" id="password-title" class="form-label"
+        >Password:</label
+      >
       <input
         type="password"
         id="password"
@@ -23,8 +29,52 @@
         v-model="userData.password"
       />
       <br />
-      <button @click="loginUser">Login</button>
-      <p v-if="errors" class="error">{{ errors[0] }}</p>
+      <button @click="loginUser" data-test="login-button">Login</button>
+      <div v-if="loginErrors" class="error">
+        <li v-for="error in loginErrors" v-bind:key="error">
+          {{ error }}
+        </li>
+      </div>
+      <!-- Register new account form -->
+      <h2>Or register for an account</h2>
+      <label for="new-name" id="new-name-label" class="form-label"
+        >Name:
+      </label>
+      <input
+        type="text"
+        id="new-name"
+        name="new-name"
+        v-model="newUserData.name"
+      />
+      <br />
+      <label for="new-email" id="new-email-label" class="form-label"
+        >Email:
+      </label>
+      <input
+        type="text"
+        id="new-email"
+        name="new-email"
+        v-model="newUserData.email"
+      />
+      <br />
+      <label for="new-password" id="new-password-label" class="form-label"
+        >Password:</label
+      >
+      <input
+        type="password"
+        id="new-password"
+        name="new-password"
+        v-model="newUserData.password"
+      />
+      <br />
+      <button @click="registerUser" data-test="register-button">
+        Register
+      </button>
+      <div v-if="registerErrors" class="error">
+        <li v-for="error in registerErrors" v-bind:key="error">
+          {{ error }}
+        </li>
+      </div>
     </div>
   </div>
 </template>
@@ -44,7 +94,14 @@ export default {
         email: "jill@harvard.edu",
         password: "asdfasdf",
       },
-      errors: null,
+      newUserData: {
+        name: "Jeff Chen",
+        email: "jchen@harvard.edu",
+        password: "asdfasdf",
+      },
+      loginErrors: null,
+      signoutErrors: null,
+      registerErrors: null,
       favorites: null,
     };
   },
@@ -55,7 +112,17 @@ export default {
         if (response.data.authenticated) {
           this.$store.commit("setUser", response.data.user);
         } else {
-          this.errors = response.data.errors;
+          this.loginErrors = response.data.errors;
+        }
+      });
+    },
+    registerUser() {
+      console.log("registering");
+      axios.post("register", this.newUserData).then((response) => {
+        if (response.data.success) {
+          this.$store.commit("setUser", response.data.user);
+        } else {
+          this.registerErrors = response.data.errors;
         }
       });
     },
@@ -66,7 +133,7 @@ export default {
         if (response.data.success) {
           this.$store.commit("setUser", null);
         } else {
-          this.errors = response.data.errors;
+          this.signoutErrors = response.data.errors;
         }
       });
     },
