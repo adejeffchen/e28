@@ -9,7 +9,8 @@ export default new Vuex.Store({
     state: {
         recipes: [],
         reviews: [],
-        user: null
+        user: null,
+        favorites: []
     },
     mutations: {
         setRecipes(state, payload) {
@@ -20,6 +21,9 @@ export default new Vuex.Store({
         },
         setUser(state, payload) {
             state.user = payload;
+        },
+        setFavorites(state, payload) {
+            state.favorites = payload;
         },
     },
     actions: {
@@ -33,6 +37,14 @@ export default new Vuex.Store({
             // get review data from server
             axios.get("review").then((response) => {
                 context.commit('setReviews', response.data.review);
+            });
+        },
+        fetchFavorites(context) {
+            // get favorites data from server
+            axios.get("favorite").then((response) => {
+                context.commit('setFavorites', response.data.favorite.map((favorite) => {
+                    return this.getters.getRecipeById(favorite.product_id);
+                }));
             });
         },
         authUser(context) {

@@ -1,9 +1,11 @@
 <template>
   <div>
     <div v-if="user">
-      <h1 v-if="favorites">
+      <!-- If favorites array is empty -->
+      <h1 v-if="!favorites.length">
         Hi {{ user.name }}, you don't have any favorite recipe yet!
       </h1>
+      <!-- If favorites array is not empty -->
       <h1 v-else>Hi {{ user.name }}, here are your favorite recipes!</h1>
       <button @click="signoutUser" data-test="signout-button">Sign Out</button>
       <show-recipe
@@ -102,7 +104,7 @@ export default {
       loginErrors: null,
       signoutErrors: null,
       registerErrors: null,
-      favorites: null,
+      //favorites: null,
     };
   },
   methods: {
@@ -131,7 +133,9 @@ export default {
       axios.post("logout").then((response) => {
         console.log(response.data);
         if (response.data.success) {
+          // reset store User and Favorite
           this.$store.commit("setUser", null);
+          this.$store.commit("setFavorites", null);
         } else {
           this.signoutErrors = response.data.errors;
         }
@@ -139,14 +143,8 @@ export default {
     },
     loadFavorites() {
       if (this.user) {
-        this.favorites = [];
         // get the favorites for this logged in user
-        axios.get("favorite").then((response) => {
-          // Iterate through the favorites, loading the recipe information for each favorite
-          this.favorites = response.data.favorite.map((favorite) => {
-            return this.$store.getters.getRecipeById(favorite.product_id);
-          });
-        });
+        this.$store.dispatch("fetchFavorites");
       }
     },
   },
@@ -154,6 +152,10 @@ export default {
     // get user data from store
     user() {
       return this.$store.state.user;
+    },
+    // get favorites data from store
+    favorites() {
+      return this.$store.state.favorites;
     },
   },
   watch: {

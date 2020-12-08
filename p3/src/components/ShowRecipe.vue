@@ -7,9 +7,15 @@
       class="recipe-full-thumb"
       v-bind:src="require('@/assets/images/recipes/' + recipe.id + '.jpg')"
     />
-    <!-- recipe description, time, calories  -->
     <div class="recipe-detail">
-      <p>{{ recipe.description }}</p>
+      <!-- if user data exists, show add to fav button  -->
+      <div v-if="user">
+        <button id="favButton" @click="favoriteButtonClick">
+          {{ favButtonLabel }}
+        </button>
+      </div>
+      <!-- recipe description, time, calories  -->
+      <p id="recipeDesc">{{ recipe.description }}</p>
       <b>Time: </b>{{ recipe.time }} minutes<br />
       <b>One serving calories: </b>{{ recipe.calories }}<br />
 
@@ -83,6 +89,7 @@
 </template>
 
 <script>
+import { axios } from "@/app.js";
 export default {
   name: "show-recipe",
   props: ["showDetail", "recipe"],
@@ -90,6 +97,7 @@ export default {
     return {
       recipesPath: "/recipes/" + this.recipe.id,
       addReviewPath: "/recipes/" + this.recipe.id + "/add-review",
+      favButtonLabel: "",
     };
   },
   computed: {
@@ -108,6 +116,35 @@ export default {
         return theReviews;
       }
     },
+    // get user data from store
+    user() {
+      return this.$store.state.user;
+    },
+  },
+  methods: {
+    favoriteButtonClick() {
+      if (this.favButtonLabel == "Add to favorites") {
+        console.log("adding");
+      } else {
+        console.log("removing");
+      }
+    },
+  },
+  mounted() {
+    if (this.showDetail) {
+      axios
+        .get("favorite/query", {
+          params: { product_id: this.recipe.id },
+        })
+        .then((response) => {
+          // check if this recipe has been favorited before or not
+          if (response.data.results.length == 0) {
+            this.favButtonLabel = "Add to favorites";
+          } else {
+            this.favButtonLabel = "Remove from favorites";
+          }
+        });
+    }
   },
 };
 </script>
