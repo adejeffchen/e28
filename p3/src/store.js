@@ -47,11 +47,28 @@ export default new Vuex.Store({
                 }));
             });
         },
-        authUser(context) {
-            axios.post('auth').then((response) => {
-                if (response.data.authenticated) {
-                    context.commit('setUser', response.data.user);
+        addFavorites({ dispatch }, productId) {
+            axios.post('/favorite', {
+                product_id: productId,
+            }).then((response) => {
+                console.log(productId);
+                console.log(response.data);
+                if (response.data.success) {
+                    dispatch('fetchFavorites');
                 }
+            });
+        },
+        authUser(context) {
+            return new Promise((resolve) => {
+                axios.post('auth').then((response) => {
+                    if (response.data.authenticated) {
+                        context.commit('setUser', response.data.user);
+                    } else {
+                        context.commit('setUser', false);
+                    }
+
+                    resolve();
+                });
             });
         },
     },

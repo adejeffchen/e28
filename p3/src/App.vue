@@ -49,7 +49,7 @@ export default {
     // get recipes and reviews data from server
     this.$store.dispatch("fetchRecipes");
     this.$store.dispatch("fetchReviews");
-    this.$store.dispatch("authUser");
+    // this.$store.dispatch("authUser");
   },
 };
 </script>

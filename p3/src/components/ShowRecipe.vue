@@ -10,8 +10,21 @@
     <div class="recipe-detail">
       <!-- if user data exists, show add to fav button  -->
       <div v-if="user">
-        <button id="favButton" @click="favoriteButtonClick">
-          {{ favButtonLabel }}
+        <button
+          id="favButton"
+          @click="favoriteButtonClick"
+          data-test="fav-button"
+          v-if="favored"
+        >
+          Remove from favorites
+        </button>
+        <button
+          id="favButton"
+          @click="favoriteButtonClick"
+          data-test="fav-button"
+          v-else
+        >
+          Add to favorites
         </button>
       </div>
       <!-- recipe description, time, calories  -->
@@ -97,7 +110,8 @@ export default {
     return {
       recipesPath: "/recipes/" + this.recipe.id,
       addReviewPath: "/recipes/" + this.recipe.id + "/add-review",
-      favButtonLabel: "",
+      favoriteID: 0,
+      favored: null,
     };
   },
   computed: {
@@ -123,15 +137,19 @@ export default {
   },
   methods: {
     favoriteButtonClick() {
-      if (this.favButtonLabel == "Add to favorites") {
-        console.log("adding");
+      if (!this.favored) {
+        console.log("adding recipe id = " + this.recipe.id);
+        // add to favorite and update store
+        this.$store.dispatch("addFavorites", this.recipe.id);
+        this.favored = true;
       } else {
         console.log("removing");
+        this.favored = false;
       }
     },
   },
   mounted() {
-    if (this.showDetail) {
+    if (this.showDetail && this.user) {
       axios
         .get("favorite/query", {
           params: { product_id: this.recipe.id },
@@ -139,9 +157,10 @@ export default {
         .then((response) => {
           // check if this recipe has been favorited before or not
           if (response.data.results.length == 0) {
-            this.favButtonLabel = "Add to favorites";
+            this.favored = false;
           } else {
-            this.favButtonLabel = "Remove from favorites";
+            this.favoriteID = response.data.results[0].id;
+            this.favored = true;
           }
         });
     }
