@@ -8,7 +8,7 @@
       v-bind:src="require('@/assets/images/recipes/' + recipe.id + '.jpg')"
     />
     <div class="recipe-detail">
-      <!-- if user data exists, show add to fav button  -->
+      <!-- if user data exists, show favorite button  -->
       <div v-if="user">
         <button
           id="favButton"
@@ -27,6 +27,7 @@
           Add to favorites
         </button>
       </div>
+
       <!-- recipe description, time, calories  -->
       <p id="recipeDesc">{{ recipe.description }}</p>
       <b>Time: </b>{{ recipe.time }} minutes<br />
@@ -138,14 +139,14 @@ export default {
   methods: {
     favoriteButtonClick() {
       if (!this.favored) {
-        console.log("adding recipe id = " + this.recipe.id);
+        // if not favored yet
         // add to favorite and update store
         this.$store.dispatch("addFavorites", this.recipe.id).then((res) => {
           this.favoriteID = res;
         });
         this.favored = true;
       } else {
-        console.log("removing");
+        // remove from favorite and update store
         this.$store.dispatch("removeFavorites", this.favoriteID);
         this.favored = false;
       }
@@ -153,6 +154,8 @@ export default {
   },
   mounted() {
     if (this.showDetail && this.user) {
+      // if user exists and show recipe detail page
+      // check to see if this recipe is in the favorite list or not
       axios
         .get("favorite/query", {
           params: { product_id: this.recipe.id },

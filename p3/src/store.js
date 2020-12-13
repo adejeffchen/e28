@@ -48,13 +48,13 @@ export default new Vuex.Store({
             });
         },
         addFavorites({ dispatch }, productId) {
+            // add a recipe to favorite list for the user 
             let favID = 0;
             return new Promise((resolve) => {
                 axios.post('/favorite', {
                     product_id: productId,
                 }).then((response) => {
-                    console.log(productId);
-                    //console.log(response.data);
+                    // if successful, get latest favorites list and update store
                     if (response.data.success) {
                         dispatch('fetchFavorites');
                         favID = response.data.favorite.id;
@@ -64,15 +64,15 @@ export default new Vuex.Store({
             });
         },
         removeFavorites({ dispatch }, favId) {
+            // remove a favorite item from the user with favorite id 
             axios.delete('/favorite/' + favId).then((response) => {
-                console.log(favId);
-                console.log(response.data);
                 if (response.data.success) {
                     dispatch('fetchFavorites');
                 }
             });
         },
         deleteReview({ dispatch }, reviewId) {
+            // delete a review with review id 
             axios.delete('/review/' + reviewId).then((response) => {
                 if (response.data.success) {
                     dispatch('fetchReviews');
@@ -80,6 +80,7 @@ export default new Vuex.Store({
             });
         },
         authUser(context) {
+            // check a visitor’s authentication status and update store user data 
             return new Promise((resolve) => {
                 axios.post('auth').then((response) => {
                     if (response.data.authenticated) {

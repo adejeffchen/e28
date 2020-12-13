@@ -1,5 +1,6 @@
 <template>
   <div>
+    <!-- If user data exists in store -->
     <div v-if="user">
       <!-- If favorites array is empty -->
       <h1 v-if="!favorites || !favorites.length">
@@ -7,11 +8,13 @@
       </h1>
       <!-- If favorites array is not empty -->
       <h1 v-else>Hi {{ user.name }}, here are your favorite recipes!</h1>
+      <!-- Sign out button -->
       <div id="signoutButton">
         <button @click="signoutUser" data-test="signout-button">
           Sign Out
         </button>
       </div>
+      <!-- show a list of favored recipes -->
       <show-recipe
         v-for="recipe in favorites"
         :key="recipe.id"
@@ -55,6 +58,7 @@
         {{ loginErrors.password[0] }}
       </span>
       <br />
+      <!-- login button -->
       <button @click="loginUser" data-test="login-button">Login</button>
       <!-- login error msg from server side -->
       <div v-if="loginServerErrors" class="error">
@@ -118,6 +122,7 @@
         {{ registerErrors.password[0] }}
       </span>
       <br />
+      <!-- register new account button -->
       <button @click="registerUser" data-test="register-button">
         Register
       </button>
@@ -161,11 +166,10 @@ export default {
       signoutErrors: [],
       registerErrors: [],
       registerServerErrors: [],
-      //favorites: null,
     };
   },
   methods: {
-    //validate the login fields
+    // validate the login fields
     validateLoginFields() {
       let validator = new Validator(this.userData, {
         email: "required|email",
@@ -175,7 +179,7 @@ export default {
       this.loginErrors = validator.errors.all();
       return validator.passes();
     },
-    //validate the register new account fields
+    // validate the register new account fields
     validateRegisterFields() {
       let validator = new Validator(this.newUserData, {
         name: "required|min:3",
@@ -186,6 +190,7 @@ export default {
       this.registerErrors = validator.errors.all();
       return validator.passes();
     },
+    // login a user
     loginUser() {
       if (Object.keys(this.loginErrors).length === 0) {
         axios.post("login", this.userData).then((response) => {
@@ -197,6 +202,7 @@ export default {
         });
       }
     },
+    // register a user
     registerUser() {
       if (Object.keys(this.registerErrors).length === 0) {
         axios.post("register", this.newUserData).then((response) => {
@@ -208,10 +214,9 @@ export default {
         });
       }
     },
+    // sign out current user
     signoutUser() {
-      console.log("Signing out");
       axios.post("logout").then((response) => {
-        console.log(response.data);
         if (response.data.success) {
           // reset store User and Favorite
           this.$store.commit("setUser", null);
@@ -231,9 +236,9 @@ export default {
         password: "",
       };
     },
+    // get the favorites for this logged in user
     loadFavorites() {
       if (this.user) {
-        // get the favorites for this logged in user
         this.$store.dispatch("fetchFavorites");
       }
     },
@@ -251,7 +256,6 @@ export default {
   watch: {
     // trigger this when the 'user' data changes
     user: function () {
-      console.log("user changed");
       this.loadFavorites();
     },
   },
