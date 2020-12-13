@@ -140,10 +140,13 @@ export default {
       if (!this.favored) {
         console.log("adding recipe id = " + this.recipe.id);
         // add to favorite and update store
-        this.$store.dispatch("addFavorites", this.recipe.id);
+        this.$store.dispatch("addFavorites", this.recipe.id).then((res) => {
+          this.favoriteID = res;
+        });
         this.favored = true;
       } else {
         console.log("removing");
+        this.$store.dispatch("removeFavorites", this.favoriteID);
         this.favored = false;
       }
     },

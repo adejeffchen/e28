@@ -1,6 +1,6 @@
 // https://docs.cypress.io/api/introduction/api.html
 
-describe('Testing My Recipes App', () => {
+describe('Testing basic recipes and signin/sign out/register features', () => {
   it('visits the homepage', () => {
     cy.visit('/')
     cy.contains('h1', 'Welcome to Jeff Recipe Book!')
@@ -92,44 +92,5 @@ describe('Testing My Recipes App', () => {
     cy.get('[data-test="register-button"]').click()
     // check server error message 
     cy.contains("The email has already been taken.")
-  })
-
-  it('goes to my favorites, sign in, check fav button labels on different recipes', () => {
-    cy.visit('/myfavorites')
-    // fill in email
-    cy.get('[data-test="login-email-field"]').type('jill@harvard.edu')
-    // fill in password
-    cy.get('[data-test="login-password-field"]').type('asdfasdf').blur()
-    // click login
-    cy.get('[data-test="login-button"]').click()
-    cy.contains('Hi Jill Harvard, here are your favorite recipes!')
-    // go to recipe 1
-    cy.visit('/recipes/1');
-    // check fav button label = Remove from favorites
-    cy.contains('[data-test="fav-button"]', 'Remove from favorites')
-    // go to recipe 3
-    cy.visit('/recipes/3')
-    // check fav button label = Add to favorites
-    cy.contains('[data-test="fav-button"]', 'Add to favorites')
-  })
-
-  it('sign in, add a recipe to favorite', () => {
-    cy.visit('/myfavorites')
-    // fill in email
-    cy.get('[data-test="login-email-field"]').type('jill@harvard.edu')
-    // fill in password
-    cy.get('[data-test="login-password-field"]').type('asdfasdf').blur()
-    // click login
-    cy.get('[data-test="login-button"]').click()
-    cy.contains('Hi Jill Harvard, here are your favorite recipes!')
-    // go to recipe 4
-    cy.visit('/recipes/4');
-    // Click Add to favorites
-    cy.get('[data-test="fav-button"]').click()
-    cy.contains("Upside-Down Shepherd's Pie")
-    cy.contains('[data-test="fav-button"]', 'Remove from favorites')
-    // check favorite recipes count
-    cy.visit('/myfavorites')
-    cy.get('.recipe-name').should('have.length', 3)
   })
 })

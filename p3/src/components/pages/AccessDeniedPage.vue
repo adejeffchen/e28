@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>Authenticated Users Area. Please Login.</h1>
+    <h1>Authenticated Users Area</h1>
   </div>
 </template>
 

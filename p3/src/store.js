@@ -48,13 +48,34 @@ export default new Vuex.Store({
             });
         },
         addFavorites({ dispatch }, productId) {
-            axios.post('/favorite', {
-                product_id: productId,
-            }).then((response) => {
-                console.log(productId);
+            let favID = 0;
+            return new Promise((resolve) => {
+                axios.post('/favorite', {
+                    product_id: productId,
+                }).then((response) => {
+                    console.log(productId);
+                    //console.log(response.data);
+                    if (response.data.success) {
+                        dispatch('fetchFavorites');
+                        favID = response.data.favorite.id;
+                    }
+                    resolve(favID);
+                });
+            });
+        },
+        removeFavorites({ dispatch }, favId) {
+            axios.delete('/favorite/' + favId).then((response) => {
+                console.log(favId);
                 console.log(response.data);
                 if (response.data.success) {
                     dispatch('fetchFavorites');
+                }
+            });
+        },
+        deleteReview({ dispatch }, reviewId) {
+            axios.delete('/review/' + reviewId).then((response) => {
+                if (response.data.success) {
+                    dispatch('fetchReviews');
                 }
             });
         },
